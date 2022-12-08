@@ -44,12 +44,12 @@ void Enemy::drawEnemy(sf::RenderWindow &window, std::vector<Enemy> &enemy)
     }
 }
 //Moves the enemy to the left of the screen
-void Enemy::moveEnemy(sf::RenderWindow &window, std::vector<Enemy> &enemy, Player &player)
+void Enemy::moveEnemy(sf::RenderWindow &window, std::vector<Enemy> &enemy, Player &player, float enemySpeed)
 {
     for (int i = 0; i < enemy.size(); i++)
     {
         //Each enemy moving left
-        enemy[i].shape.move(-4.f, 0.f);
+        enemy[i].shape.move(enemySpeed, 0.f);
         //Erase enemy if it goes of the left of the screen
         if (enemy[i].shape.getPosition().x <= 0 - enemy[i].shape.getGlobalBounds().width)
         {
@@ -69,12 +69,12 @@ void Enemy::moveEnemy(sf::RenderWindow &window, std::vector<Enemy> &enemy, Playe
 void Enemy::createNewEnemy(std::vector<Enemy> &enemies, sf::Texture *texture, sf::RenderWindow &window)
 {
     //Checking spawn timer and adding to it if it is not 30
-    if (enemySpawnTimer < 30)
+    if (enemySpawnTimer < 20)
     {
         enemySpawnTimer++;
     }
     //When timer hits 30, create new enemy and reset timer
-    if (enemySpawnTimer >= 30)
+    if (enemySpawnTimer >= 20)
     {
         enemies.push_back(Enemy(texture, window.getSize()));
         this->enemySpawnTimer = 0;

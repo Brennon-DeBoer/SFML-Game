@@ -77,6 +77,7 @@ int main()
     gameOver.setPosition((window.getSize().x / 2) - 100, (window.getSize().y / 2) - 100);
     gameOver.setString("Game Over");
     
+    float enemySpeed = -4.f;
 
     while(window.isOpen())
     {
@@ -149,6 +150,10 @@ int main()
                                         {
                                             //Update the game score
                                             gameScore += enemies[k].maxHp;
+                                            if (gameScore % 10 == 0)
+                                            {
+                                                enemySpeed -= .5f;
+                                            }
                                             //Enemy is dead
                                             enemies.erase(enemies.begin() + k);
                                         }
@@ -169,7 +174,7 @@ int main()
                             //Drawing the bullets shot by player to window
                             player.drawBullets(window, player);
                             //Update the enemy position
-                            enemy.moveEnemy(window, enemies, player);
+                            enemy.moveEnemy(window, enemies, player, enemySpeed);
                             //Create new enemies
                             enemy.createNewEnemy(enemies, &enemyTex, window);
                             //Drawing the enemies to window

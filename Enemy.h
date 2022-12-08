@@ -16,7 +16,7 @@ public:
     Enemy(sf::Texture *texture, sf::Vector2u windowSize);
     ~Enemy() {};
     void drawEnemy(sf::RenderWindow &window, std::vector<Enemy> &enemy);
-    void moveEnemy(sf::RenderWindow &window, std::vector<Enemy> &enemy, Player &player);
+    void moveEnemy(sf::RenderWindow &window, std::vector<Enemy> &enemy, Player &player, float enemySpeed);
     void createNewEnemy(std::vector<Enemy> &enemies, sf::Texture *texture, sf::RenderWindow &window);
 private:
     //Sets the time before the next enemy will spawn
